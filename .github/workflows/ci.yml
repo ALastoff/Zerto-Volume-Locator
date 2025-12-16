@@ -40,4 +40,4 @@ jobs:
             $errors = $issues | Where-Object Severity -eq 'Error'
             if ($errors) { exit 1 } else { Write-Host "Warnings found; not failing." }
           } else {
-            Write-Host "No issues            Write-Host "No issues found."
+            Write-Host "No issues"            Write-Host "No issues found."
