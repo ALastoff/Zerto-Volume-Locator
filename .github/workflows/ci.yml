@@ -1,0 +1,13 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  lint:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PSScriptAnalyzer
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
+      - name: Analyze scripts
+        run: |
+          Invoke-ScriptAnalyzer -Path src -Recurse -ReportSummary

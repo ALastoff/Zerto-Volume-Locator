@@ -1,0 +1,13 @@
+# PowerShell caches
+*.ps1xml
+*.ps1~*
+*.ps1.bak
+
+# Local state / creds
+*.log
+/*.csv
+**/cred.xml
+
+# VS Code & Editor
+.vscode/
+*.code-workspace
