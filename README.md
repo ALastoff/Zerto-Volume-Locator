@@ -29,3 +29,17 @@ This PowerShell/PowerCLI script maps Windows VM drive letters to their correspon
 ## Troubleshooting
 See failure log for details.
 
+## Legal Disclaimer
+
+This script is provided as an **example only** and is **not supported** under any Zerto support program or service.
+
+> The author and Zerto disclaim all implied warranties, including merchantability and fitness for a particular purpose.  
+> In no event shall Zerto or the author be liable for damages arising from the use or inability to use this script.  
+> Use at your own risk.
+
+---
+
+**Author:** AJ Lastoff
+**Company:** Zerto (HPE)  
+**Version:** 1.0  
+**Date:** December 2025
