@@ -1,9 +1,23 @@
 ﻿
-# --- PowerCLI import & base configuration (VCF.PowerCLI preferred; fallback to VMware.PowerCLI) ---
-Import-Module VCF.PowerCLI -ErrorAction SilentlyContinue
-if (-not (Get-Module VCF.PowerCLI)) {
-    Import-Module VMware.PowerCLI -ErrorAction Stop
+# --- Silence warnings/info before anything loads ---
+$WarningPreference         = 'SilentlyContinue'
+$InformationPreference     = 'SilentlyContinue'
+$PSDefaultParameterValues['*:WarningAction']     = 'SilentlyContinue'
+$PSDefaultParameterValues['*:InformationAction'] = 'SilentlyContinue'
+
+# --- Import PowerCLI quietly (VCF preferred; VMware.PowerCLI fallback) ---
+Import-Module VCF.PowerCLI     -ErrorAction SilentlyContinue -WarningAction SilentlyContinue 3>$null
+if (-not (Get-Module -Name VCF.PowerCLI)) {
+    Import-Module VMware.PowerCLI -ErrorAction Stop            -WarningAction SilentlyContinue 3>$null
 }
+
+# --- Apply session & user settings once the module exists ---
+# Session setting (takes effect immediately in this run):
+Set-PowerCLIConfiguration -Scope Session -ParticipateInCEIP $false -Confirm:$false | Out-Null
+# User setting (persists; will be used next session):
+Set-PowerCLIConfiguration -Scope User    -ParticipateInCEIP $false -Confirm:$false | Out-Null
+
+# Also suppress cert prompts:
 Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false | Out-Null
 
 # --- Prompt for vCenter ---
